@@ -25,7 +25,16 @@ class Api::ArticlesController < ApplicationController
   end
 
   def pic
-    render json: {message: "hello!"}
+    link = params["api_URL"]
+    tail = "?show-blocks=all&api-key=#{ENV["API_KEY"]}"
+    response = Unirest.get(link + tail)
+    @pics = response.body["response"]["content"]["blocks"]["main"]["elements"][0]["assets"]
+    @pics.each do |pic|
+      if pic["typeData"]["isMaster"] == true
+        @img = pic["file"]
+      end
+    end
+    render json: {img: @img}
   end
 
 end
