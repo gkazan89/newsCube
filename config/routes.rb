@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   namespace :api do
     get "/articles" => "articles#index"
     get "/pic" =>"articles#pic"
+    get "/read" => "articles#read"
   end
 end

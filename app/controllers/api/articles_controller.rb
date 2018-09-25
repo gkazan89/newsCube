@@ -37,4 +37,15 @@ class Api::ArticlesController < ApplicationController
     render json: {img: @img}
   end
 
+  def read
+    url = params["api_URL"]
+    tail = "?show-blocks=all&api-key=#{ENV["API_KEY"]}"
+    link = url + tail
+    response = Unirest.get(link)
+    @info = response.body
+    render json: {info: @info}
+  end
+
+
+
 end
