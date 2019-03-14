@@ -1,5 +1,4 @@
 class Api::ArticlesController < ApplicationController
-
   def index
     @things = [
       {:category=>"technology"}, 
@@ -45,7 +44,4 @@ class Api::ArticlesController < ApplicationController
     @info = response.body
     render json: {info: @info}
   end
-
-
-
 end
